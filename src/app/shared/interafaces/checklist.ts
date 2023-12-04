@@ -1,4 +1,4 @@
 export interface Checklist {
     id: string;
-    tittle: string;  
+    title: string;  
 }

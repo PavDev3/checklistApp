@@ -1,11 +1,13 @@
-import { Component, signal } from "@angular/core";
+import { Component, effect, inject, signal } from "@angular/core";
 import { ModalComponent } from "../shared/ui/modal.component";
 import { Checklist } from "../shared/interafaces/checklist";
+import { FormBuilder } from "@angular/forms";
+import { FormModalComponent } from "../shared/ui/form-modal.component";
 
 @Component ({
     standalone: true,
     selector: 'app-home',
-    imports: [ModalComponent],
+    imports: [ModalComponent, FormModalComponent],
     template: `
     <header>
         <h1>Checklist</h1>
@@ -13,10 +15,35 @@ import { Checklist } from "../shared/interafaces/checklist";
     </header>
     
     <app-modal [isOpen]="!!checklistBeingEdited()">
-        <ng-template> No puedes verlo aun</ng-template>
+        <ng-template> 
+            <app-form-modal 
+            [title]="
+            checklistBeingEdited()?.title
+              ? checklistBeingEdited()!.title!
+              : 'Add Checklist'
+          "
+          [formGroup]="checklistForm"
+          (close)="checklistBeingEdited.set(null)"
+        />
+        </ng-template>
     </app-modal>`
 })
 
 export default class HomeComponent {
+    formBuilder = inject(FormBuilder);
     checklistBeingEdited = signal<Partial<Checklist> | null>(null);
+
+    checklistForm = this.formBuilder.nonNullable.group({
+        title: [''],
+    });
+
+    constructor() {
+        effect(() => {
+            const checklist = this.checklistBeingEdited();
+
+            if (!checklist) {
+                this.checklistForm.reset();
+            }
+        });
+    }
 }
