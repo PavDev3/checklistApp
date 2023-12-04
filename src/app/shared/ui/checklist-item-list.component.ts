@@ -1,5 +1,5 @@
-import { Component, Input } from "@angular/core";
-import { ChecklistItem } from "../interafaces/checklist-item";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChecklistItem, RemoveChecklistItem } from "../interafaces/checklist-item";
 
 @Component ({
     standalone: true,
@@ -10,7 +10,13 @@ import { ChecklistItem } from "../interafaces/checklist-item";
             @for (item of checklistItems; track item.id){
                 <li>
                     <div>
-                        {{ item.title }}
+                        @if (item.checked) {
+                            <span> ✅</span>
+                        }
+                            {{ item.title }}
+                    </div>
+                    <div>
+                        <button (click)="toggle.emit(item.id)">Toggle</button>
                     </div>
                 </li>
             } @empty {
@@ -25,4 +31,5 @@ import { ChecklistItem } from "../interafaces/checklist-item";
 
 export class ChecklistItemListComponent {
     @Input ({required: true}) checklistItems!: ChecklistItem[];
+    @Output() toggle = new EventEmitter<RemoveChecklistItem>();
 }
