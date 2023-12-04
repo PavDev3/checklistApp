@@ -17,6 +17,10 @@ import { ChecklistListComponent } from "../shared/ui/checklist-list.component";
         <h1>Checklist</h1>
         <button (click)="checklistBeingEdited.set({})">Add Checklist</button>
     </header>
+
+    <section>
+        <app-checklist-list [checklists]="checklistService.checklists()" />
+    </section>
     
     <app-modal [isOpen]="!!checklistBeingEdited()">
         <ng-template> 
@@ -32,9 +36,7 @@ import { ChecklistListComponent } from "../shared/ui/checklist-list.component";
         />
         </ng-template>
     </app-modal>
-    <section>
-        <app-checklist-list [checklists]="checklistService.checklists()" />
-    </section>
+
     `
 })
 
