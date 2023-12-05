@@ -1,9 +1,9 @@
 import { RemoveChecklist } from './checklist';
 
 export interface ChecklistItem {
-  id: any;
-  checklistId: any;
-  title: any;
+  id: string;
+  checklistId: string;
+  title: string;
   checked: boolean;
 }
 

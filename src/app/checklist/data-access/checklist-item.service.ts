@@ -28,14 +28,13 @@ export interface ChecklistItemsState {
     // sources
     private checklistItemsLoaded$ = this.storageService.loadChecklistItems();
     add$ = new Subject<AddChecklistItem>();
+    remove$ = new Subject<RemoveChecklistItem>();
+    edit$ = new Subject<EditChecklistItem>();
     toggle$ = new Subject<RemoveChecklistItem>();
     reset$ = new Subject<RemoveChecklist>();
-    remove$ = new Subject<RemoveChecklistItem>();
-    edit$ = new Subject<RemoveChecklistItem>();
-    checklistRemoved$ = new Subject<RemoveChecklist>()
-    
+    checklistRemoved$ = new Subject<RemoveChecklist>();
   
-
+  
     
     constructor() {
 
@@ -89,11 +88,11 @@ export interface ChecklistItemsState {
     );
 
     this.edit$.pipe(takeUntilDestroyed()).subscribe((update) =>
-    this.state.update((state) => ({
-      ...state,
-      checklistItems: state.checklistItems.map((item) =>
-        item.id === update.id ? { ...item, title: update.data.title } : item
-      ),
+      this.state.update((state) => ({
+        ...state,
+        checklistItems: state.checklistItems.map((item) =>
+          item.id === update.id ? { ...item, title: update.data.title } : item
+        ),
     }))
   );
 
