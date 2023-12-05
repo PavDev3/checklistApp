@@ -3,12 +3,12 @@ import { ChecklistService } from "../shared/data-access/checklist.service";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { ChecklistHeaderComponent } from "./ui/checklist-header.component";
-import { ChecklistItemService } from "../shared/data-access/checklist-item.service";
+import { ChecklistItemService } from "./data-access/checklist-item.service";
 import { FormBuilder } from "@angular/forms";
 import { ChecklistItem } from "../shared/interafaces/checklist-item";
 import { ModalComponent } from "../shared/ui/modal.component";
 import { FormModalComponent } from "../shared/ui/form-modal.component";
-import { ChecklistItemListComponent } from "../shared/ui/checklist-item-list.component";
+import { ChecklistItemListComponent } from "./ui/checklist-item-list.component";
 
 @Component ({
     standalone: true,

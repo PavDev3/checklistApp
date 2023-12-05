@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Checklist } from "../interafaces/checklist";
+import { Checklist } from "../../shared/interafaces/checklist";
 
 @Component({
     standalone: true,

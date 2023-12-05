@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { ChecklistItem, RemoveChecklistItem } from "../interafaces/checklist-item";
+import { ChecklistItem, RemoveChecklistItem } from "../../shared/interafaces/checklist-item";
 
 @Component ({
     standalone: true,

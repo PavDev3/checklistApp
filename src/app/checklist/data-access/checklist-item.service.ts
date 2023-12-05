@@ -1,8 +1,8 @@
 import { Injectable, computed, signal } from "@angular/core";
-import { AddChecklistItem, ChecklistItem, RemoveChecklistItem } from "../interafaces/checklist-item";
+import { AddChecklistItem, ChecklistItem, RemoveChecklistItem } from "../../shared/interafaces/checklist-item";
 import { Subject } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { RemoveChecklist } from "../interafaces/checklist";
+import { RemoveChecklist } from "../../shared/interafaces/checklist";
 
 export interface ChecklistItemsState {
     checklistItems: ChecklistItem[];
