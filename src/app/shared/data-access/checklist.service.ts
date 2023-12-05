@@ -27,6 +27,7 @@ export class ChecklistService {
         error: null,
     });
     // Selectors
+    loaded = computed(() => this.state().loaded);
     checklists = computed(() => this.state().checklists);
 
     // sources
@@ -53,6 +54,14 @@ export class ChecklistService {
         }))
       );
     }
+
+      // effects
+      effects() {
+        if (this.loaded()) {
+          this.storageService.saveChecklists(this.checklists());
+        }
+      }
+
   
     private addIdToChecklist(checklist: AddChecklist) {
       return {
