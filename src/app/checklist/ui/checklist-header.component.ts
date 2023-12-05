@@ -1,27 +1,44 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { RouterLink } from "@angular/router";
+import { RouterLink, RouterModule } from "@angular/router";
 import { Checklist, RemoveChecklist } from "../../shared/interafaces/checklist";
 
-@Component ({
+@Component({
     standalone: true,
     selector: 'app-checklist-header',
-    imports: [RouterLink],
     template: `
-    <header>
-        <a routerLink="/home">Back</a>
-        <h1>{{ checklist.title }}</h1>
+      <header>
+        <a data-testid="back-button" routerLink="/home">Back</a>
+        <h1 data-testid="checklist-title">
+          {{ checklist.title }}
+        </h1>
         <div>
-            <button (click)="resetChecklist.emit()">Reset</button>
-            <button (click)="addItem.emit()">Add item</button>
+          <button
+            (click)="resetChecklist.emit(checklist.id)"
+            data-testid="reset-items-button"
+          >
+            Reset
+          </button>
+          <button
+            (click)="addItem.emit()"
+            data-testid="create-checklist-item-button"
+          >
+            Add item
+          </button>
         </div>
-    </header>
+      </header>
     `,
-})
-
-export class ChecklistHeaderComponent {
-    @Input({required: true}) checklist!: Checklist;
+    styles: [
+      `
+        button {
+          margin-left: 1rem;
+        }
+      `,
+    ],
+    imports: [RouterModule],
+  })
+  export class ChecklistHeaderComponent {
+    @Input({ required: true }) checklist!: Checklist;
     @Output() addItem = new EventEmitter<void>();
-    @Output() resetChecklist  = new EventEmitter<string>();
-}
-
+    @Output() resetChecklist = new EventEmitter<string>();
+  }
 

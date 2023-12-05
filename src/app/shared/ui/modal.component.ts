@@ -5,19 +5,17 @@ import { Component, Input, TemplateRef, ContentChild, inject } from '@angular/co
     standalone: true,
     selector: 'app-modal',
     template: `<div></div>`,
-})
-
-export class ModalComponent {
+  })
+  export class ModalComponent {
     dialog = inject(Dialog);
-
+  
     @Input() set isOpen(value: boolean) {
-        if (value) {
-            this.dialog.open(this.template, { panelClass: 'dialog-container'});
-        } else {
-            this.dialog.closeAll();
-        }
+      if (value) {
+        this.dialog.open(this.template, { panelClass: 'dialog-container' });
+      } else {
+        this.dialog.closeAll();
+      }
     }
-
-    @ContentChild(TemplateRef, { static: false}) template!: TemplateRef<any>;
-
-}
+  
+    @ContentChild(TemplateRef, { static: false }) template!: TemplateRef<any>;
+  }
