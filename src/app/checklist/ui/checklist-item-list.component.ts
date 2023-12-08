@@ -9,29 +9,26 @@ import { CommonModule } from "@angular/common";
       <section>
         <ul>
           @for (item of checklistItems; track item.id){
-          <li data-testid="checklist-item">
+          <li>
             <div>
               @if (item.checked){
-              <span data-testid="checked-indicator">✅</span>
+              <span>✅</span>
               }
               {{ item.title }}
             </div>
             <div>
               <button
                 (click)="toggle.emit(item.id)"
-                data-testid="toggle-checklist-item-button"
               >
                 Toggle
               </button>
               <button
                 (click)="edit.emit(item)"
-                data-testid="edit-checklist-item-button"
               >
                 Edit
               </button>
               <button
                 (click)="delete.emit(item.id)"
-                data-testid="delete-checklist-item-button"
               >
                 Delete
               </button>
@@ -40,8 +37,8 @@ import { CommonModule } from "@angular/common";
           } @empty {
           <div>
             <h2>Add an item</h2>
-            <p data-testid="no-checklist-items-message">
-              Click the add button to add your first item to this quicklist
+            <p>
+              Click the add button to add your first item to this quicklist.
             </p>
           </div>
           }

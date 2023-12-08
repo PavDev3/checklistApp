@@ -22,8 +22,8 @@ export interface ChecklistItemsState {
     });
   
     // selectors
-    loaded = computed(() => this.state().loaded);
     checklistItems = computed(() => this.state().checklistItems);
+    loaded = computed(() => this.state().loaded);
   
     // sources
     private checklistItemsLoaded$ = this.storageService.loadChecklistItems();
@@ -39,7 +39,7 @@ export interface ChecklistItemsState {
     constructor() {
 
       // reducers
-    this.add$.pipe(takeUntilDestroyed()).subscribe((checklistItem) =>
+      this.add$.pipe(takeUntilDestroyed()).subscribe((checklistItem) =>
       this.state.update((state) => ({
         ...state,
           checklistItems: [
@@ -49,6 +49,7 @@ export interface ChecklistItemsState {
               id: Date.now().toString(),
               checklistId: checklistItem.checklistId,
               checked: false,
+              
             },
           ],
         }))
